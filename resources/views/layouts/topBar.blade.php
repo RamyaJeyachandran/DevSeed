@@ -3,7 +3,7 @@
                     <!-- BEGIN: Breadcrumb -->
                     <nav aria-label="breadcrumb" class="-intro-x mr-auto hidden sm:flex">
                         <ol class="breadcrumb">
-                            <li class="breadcrumb-item active" aria-current="page">@yield('title')</li>
+                            <li class="breadcrumb-item active font-medium text-base  mr-auto" aria-current="page">@yield('title')</li>
                         </ol>
                     </nav>
                     <!-- END: Breadcrumb -->
@@ -25,7 +25,7 @@
                                     <a href="" class="dropdown-item hover:bg-white/5"> <i data-lucide="user" class="w-4 h-4 mr-2"></i> Profile </a>
                                 </li>
                                 <li>
-                                    <a href="" class="dropdown-item hover:bg-white/5"> <i data-lucide="lock" class="w-4 h-4 mr-2"></i> Reset Password </a>
+                                    <a href="{{ url('ResetPassword') }}" class="dropdown-item hover:bg-white/5"> <i data-lucide="lock" class="w-4 h-4 mr-2"></i> Reset Password </a>
                                 </li>
                                 <li>
                                     <hr class="dropdown-divider border-white/[0.08]">

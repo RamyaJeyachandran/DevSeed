@@ -7,45 +7,139 @@
                 <div class="side-nav__devider my-6"></div>
                 <ul>
                     <li>
-                        <a href="{{ url('dashboard') }}" class="{{ (request()->is('dashboard*')) ? 'side-menu side-menu--active' : 'side-menu' }}">
+                        <a id="lnkHospital" href="javascript:;.html" class="side-menu">
                             <div class="side-menu__icon"> <i data-lucide="home"></i> </div>
                             <div class="side-menu__title">
-                                Hospital Settings 
+                                    Hospital Settings 
+                                    <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
                             </div>
                         </a>
+                        <ul id="ulHospital" class=""> <!--side-menu__sub-open-->
+                            <li>
+                                <a href="{{ url('Hospital') }}" class="side-menu "><!-- side-menu--active -->
+                                    <div class="side-menu__icon"> <i data-lucide="plus-circle"></i> </div>
+                                    <div class="side-menu__title"> Add Hospital </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{ url('SearchHospital') }}" class="side-menu">
+                                    <div class="side-menu__icon"> <i data-lucide="search"></i> </div>
+                                    <div class="side-menu__title"> Search Hospital </div>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                     <li>
-                        <a href="{{ url('branches') }}" class="{{ (request()->is('branches*')) ? 'side-menu side-menu--active' : 'side-menu' }}">
-                            <div class="side-menu__icon"> <i data-lucide="box"></i> </div>
+                        <a href="javascript:;.html" class="side-menu">
+                            <div class="side-menu__icon"> <i data-lucide="layers"></i> </div>
                             <div class="side-menu__title">
                                 Branches
+                                <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
                             </div>
                         </a>
+                        <ul class="">
+                            <li>
+                                <a href="{{ url('AddPatient') }}" class="side-menu">
+                                    <div class="side-menu__icon"> <i data-lucide="plus-circle"></i> </div>
+                                    <div class="side-menu__title"> Add Branch </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="side-menu-light-dashboard-overview-3.html" class="side-menu">
+                                    <div class="side-menu__icon"> <i data-lucide="search"></i> </div>
+                                    <div class="side-menu__title"> Search Branch </div>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                     <li>
-                        <a href="javascript:;" class="{{ (request()->is('doctors*')) ? 'side-menu side-menu--active' : 'side-menu' }}">
-                            <div class="side-menu__icon"> <i data-lucide="shopping-bag"></i> </div>
+                        <a id="lnkDoctor" href="javascript:;" class="side-menu">
+                            <div class="side-menu__icon"> <i data-lucide="activity"></i> </div>
                             <div class="side-menu__title">
                                 Doctors 
+                                <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
                             </div>
                         </a>
+                        <ul id="ulDoctor" class="">
+                            <li>
+                                <a href="{{ url('Doctor') }}" class="side-menu">
+                                    <div class="side-menu__icon"> <i data-lucide="plus-circle"></i> </div>
+                                    <div class="side-menu__title"> Add Doctor </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{url('SearchDoctor')}}" class="side-menu">
+                                    <div class="side-menu__icon"> <i data-lucide="search"></i> </div>
+                                    <div class="side-menu__title"> Search Doctor </div>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
                     <li>
-                        <a href="side-menu-light-inbox.html" class="{{ (request()->is('patients*')) ? 'side-menu side-menu--active' : 'side-menu' }}">
-                            <div class="side-menu__icon"> <i data-lucide="inbox"></i> </div>
-                            <div class="side-menu__title"> Patients </div>
+                    <li>
+                        <a id="lnkPatient" href="javascript:;.html" class="side-menu">
+                            <div class="side-menu__icon"> <i data-lucide="users"></i> </div>
+                            <div class="side-menu__title">
+                                    Patients
+                                    <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
+                            </div>
                         </a>
+                        <ul id="ulPatient" class="">
+                            <li>
+                                <a href="{{ url('Patient') }}" class="side-menu">
+                                    <div class="side-menu__icon"> <i data-lucide="plus-circle"></i> </div>
+                                    <div class="side-menu__title"> Add Patient </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{url('SearchPatient')}}" class="side-menu">
+                                    <div class="side-menu__icon"> <i data-lucide="search"></i> </div>
+                                    <div class="side-menu__title"> Search Patient </div>
+                                </a>
+                            </li>
+                        </ul>
                     </li>
+                    <li>
+                        <a id="lnkAppointment" href="javascript:;" class="side-menu">
+                            <div class="side-menu__icon"> <i data-lucide="calendar"></i> </div>
+                            <div class="side-menu__title">
+                                Appointment 
+                                <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
+                            </div>
+                        </a>
+                        <ul id="ulAppointment" class="">
+                            <li>
+                                <a href="{{ url('Doctor') }}" class="side-menu">
+                                    <div class="side-menu__icon"> <i data-lucide="plus-circle"></i> </div>
+                                    <div class="side-menu__title"> Add Appointment </div>
+                                </a>
+                            </li>
+                            <li>
+                                <a href="{{url('SearchDoctor')}}" class="side-menu">
+                                    <div class="side-menu__icon"> <i data-lucide="search"></i> </div>
+                                    <div class="side-menu__title"> All Appointment </div>
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li>
+                
                     <li>
                         <a href="side-menu-light-file-manager.html" class="{{ (request()->is('reportSettings*')) ? 'side-menu side-menu--active' : 'side-menu' }}">
-                            <div class="side-menu__icon"> <i data-lucide="hard-drive"></i> </div>
+                            <div class="side-menu__icon"> <i data-lucide="settings"></i> </div>
                             <div class="side-menu__title"> Report Settings </div>
                         </a>
                     </li>
                     <li>
                         <a href="side-menu-light-point-of-sale.html" class="{{ (request()->is('generateForm*')) ? 'side-menu side-menu--active' : 'side-menu' }}">
-                            <div class="side-menu__icon"> <i data-lucide="credit-card"></i> </div>
+                            <div class="side-menu__icon"> <i data-lucide="book"></i> </div>
                             <div class="side-menu__title"> Generate Consent Form </div>
+                        </a>
+                    </li>
+                    <li>
+                        <a id="lnkSubscribe" href="{{url('subscribe')}}" class="side-menu">
+                            <div class="side-menu__icon"> <i data-lucide="plus-square"></i> </div>
+                            <div class="side-menu__title"> Subscribe </div>
                         </a>
                     </li>
                 </ul>
