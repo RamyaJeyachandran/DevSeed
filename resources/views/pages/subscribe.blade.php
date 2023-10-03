@@ -1,7 +1,7 @@
 @extends('layouts.main')
 @section('title','Subscription')
 @section ('style')
-<link rel="stylesheet" href="{{ asset('css/app.css') }}" />
+<link rel="stylesheet" href="{{ asset('dist/css/app.css') }}" />
 
 @endsection 
 @section('content')
@@ -41,6 +41,5 @@
 @endsection
 
         @push('js')
-        <script src="{{ asset('js/app.js')}}"></script>
-        <!-- <script src="{{ asset('js/patient.js')}}"></script> -->
+        <script src="{{ asset('dist/js/app.js')}}"></script>
         @endpush
