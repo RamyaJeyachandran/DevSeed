@@ -1,8 +1,7 @@
 @extends('layouts.main')
 @section('title','Hospital Information')
-@section('username','User Name')
 @section ('style')
-<link rel="stylesheet" href="{{ asset('css/app.css') }}" />
+<link rel="stylesheet" href="{{ asset('dist/css/app.css') }}" />
 
 @endsection 
 @section('content')
@@ -12,34 +11,40 @@
                 <!-- BEGIN: Content -->
                 <div class="content">
                     @include('layouts.topBar')
+                    <form id="frmHospital" method="POST" enctype="multipart/form-data">
                     <div class="grid grid-cols-12 gap-6 mt-5">
                     <div class="intro-y col-span-12 lg:col-span-6">
                     <div class="intro-y box">
                             <div id="input" class="p-5">
                                 <div class="preview">
+                                <input id="txtUser" name="userId" value="{{ session('userId') }}" type="hidden" class="form-control">
                                     <div>
-                                        <label for="txtHospitalName" class="form-label">Hospital Name</label>
-                                        <input id="txtHospitalName" type="text" class="form-control">
+                                        <label for="txtHospitalName" class="form-label">Hospital Name <span class="text-danger mt-2"> *</span></label>
+                                        <input id="txtHospitalName" type="text" name="hospitalName" class="form-control" required>
                                     </div>
                                     <div class="mt-3">
-                                        <label for="txtAddress" class="form-label">Address</label>
-                                        <textarea id="txtAddress" class="form-control" minlength="10"></textarea>
+                                        <label for="txtPhoneNo" class="form-label">Phone No <span class="text-danger mt-2"> *</span></label>
+                                        <input id="txtPhoneNo" type="text" name="phoneNo" class="form-control" required>
                                     </div>
                                     <div class="mt-3">
-                                        <label for="txtPhoneNo" class="form-label">Phone No</label>
-                                        <input id="txtPhoneNo" type="text" class="form-control">
+                                        <label for="txtEmail" class="form-label">Email Id <span class="text-danger mt-2"> *</span></label>
+                                        <input id="txtEmail" type="email" name="email" class="form-control" placeholder="example@gmail.com" required>
                                     </div>
                                     <div class="mt-3">
-                                        <label for="txtEmail" class="form-label">Email Id</label>
-                                        <input id="txtEmail" type="text" class="form-control" placeholder="example@gmail.com">
+                                        <label for="txtPassword" class="form-label">Password <span class="text-danger mt-2"> *</span></label>
+                                        <input id="txtPassword" name="password"  type="password" class="form-control" required>
                                     </div>
                                     <div class="mt-3">
-                                        <label for="txtContact" class="form-label">Contact Person</label>
-                                        <input id="txtContact" type="text" class="form-control">
+                                        <label for="txtAddress" class="form-label">Address <span class="text-danger mt-2"> *</span></label>
+                                        <textarea id="txtAddress" name="address" class="form-control" minlength="10" required></textarea>
                                     </div>
                                     <div class="mt-3">
-                                        <label for="txtContactPhNo" class="form-label">Contact Person Phone No</label>
-                                        <input id="txtContactPhNo" type="text" class="form-control">
+                                        <label for="txtContact" class="form-label">Contact Person <span class="text-danger mt-2"> *</span></label>
+                                        <input id="txtContact" name="inChargePerson" type="text" class="form-control" required>
+                                    </div>
+                                    <div class="mt-3">
+                                        <label for="txtContactPhNo" class="form-label">Contact Person Phone No <span class="text-danger mt-2"> *</span></label>
+                                        <input id="txtContactPhNo" name="inChargePhoneNo" type="text" class="form-control" required>
                                     </div>
                                     <div class="mt-3">
                                         <button id="btnSavePatient" type=submit class="btn btn-primary w-24 ml-2">Register</button>
@@ -56,22 +61,16 @@
                         <div class="intro-y box">
                             <div class="flex flex-col sm:flex-row items-center p-5 border-b border-slate-200/60 dark:border-darkmode-400">
                                 <h2 class="font-medium text-base mr-auto">
-                                    Login Information
+                                    Hospital Logo
                                 </h2>
                             </div>
                             <div id="vertical-form" class="p-5">
                                 <div class="preview">
-                                    <div>
-                                        <label for="txtUserName" class="form-label">User Name</label>
-                                        <input id="txtUserName" type="text" class="form-control">
-                                    </div>
-                                    <div class="mt-3">
-                                        <label for="txtPassword" class="form-label">Password</label>
-                                        <input id="txtPassword" name="password" type="password" class="form-control">
-                                    </div>
-                                    <div class="mt-3">
-                                        <label for="txtConfirmPassword" class="form-label">Confirm Password</label>
-                                        <input id="txtConfirmPassword" name="password" type="password" class="form-control">
+                                        <div class="intro-y col-span-12  form-control">
+                                        <div class="w-20 h-20 sm:w-24 sm:h-24 flex-none lg:w-32 lg:h-32 image-fit relative">
+                                            <img id="imgLogo" class="rounded-full" src="dist/images/profile-11.jpg">
+                                        </div>
+                                        <input id="txtLogo" name="logo" accept="image/*" type="file" class="form-control">
                                     </div>
                                 </div>
                             </div>
@@ -79,12 +78,41 @@
                         <!-- END: Vertical Form -->
                     </div>
                 </div>
+</form>
                 <!-- END: Content -->
+                <!-- BEGIN: Error Modal Content --> 
+ <div id="divHospitalErrorModal" class="modal" tabindex="-1" aria-hidden="true"> 
+    <div class="modal-dialog"> 
+        <div class="modal-content"> 
+            <div class="modal-body p-0"> 
+                <div class="p-5 text-center"> <i data-lucide="x-circle" class="w-16 h-16 text-warning mx-auto mt-3"></i> 
+                <div id="divDrErrorHead"class="text-3xl mt-5"><span></span></div> 
+                <div id="divDrErrorMsg" class="text-slate-500 mt-2"><span></span></div> </div> 
+                <div class="px-5 pb-8 text-center"> 
+                    <button type="button" data-tw-dismiss="modal" class="btn w-24 btn-primary">Ok</button> 
+                </div> 
+            </div> 
+        </div> 
+    </div> 
+</div> <!-- END: Error Modal Content --> 
+ <!-- BEGIN: Success Modal Content --> 
+ <div id="divHospitalSuccessModal" data-tw-backdrop="static" class="modal" tabindex="-1" aria-hidden="true"> 
+            <div class="modal-dialog"> <div class="modal-content"> <div class="modal-body p-0"> 
+                <div class="p-5 text-center"> <i data-lucide="check-circle" class="w-16 h-16 text-success mx-auto mt-3"></i>
+                 <div id="divDrMsg" class="text-3xl mt-5"><span></span></div> 
+                 <div id="divDrLogin" class="text-slate-500 mt-2"><span></span></div> </div>
+                  <div class="px-5 pb-8 text-center"> <button type="button" data-tw-dismiss="modal" class="btn btn-primary w-24">Ok</button>
+                 </div> 
+                </div> 
+            </div> 
+        </div> 
+    </div> 
+<!-- END: Success Modal Content --> 
     </div></div>
 @endsection
 
         @push('js')
-        <script src="{{ asset('js/app.js')}}"></script>
+        <script src="{{ asset('dist/js/app.js')}}"></script>
         @endpush
 
 

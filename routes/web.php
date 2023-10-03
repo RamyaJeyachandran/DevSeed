@@ -3,7 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\LoginController;
 use App\Http\Controllers\HospitalSettingsController;
-
+use App\Http\Controllers\PatientController;
+use App\Http\Controllers\DoctorController;
+use App\Http\Controllers\HospitalBranchController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -18,6 +20,7 @@ Route::get('/', function () {
     return view('pages.login')->with('errorMsg','');
 });
 Route::get('login', function () {
+    Session::flush();
     return view('pages.login')->with('errorMsg','');
 });
 Route::get('branches', function () {
@@ -29,7 +32,12 @@ Route::get('Doctor', function () {
 Route::get('SearchDoctor', function () {
     return view('pages.searchDoctor');
 });
-
+Route::get('Branch', function () {
+    return view('pages.addBranch');
+});
+Route::get('SearchBranch', function () {
+    return view('pages.searchBranch');
+});
 
 
 Route::get('Patient', function () {
@@ -48,6 +56,10 @@ Route::get('ResetPassword', function () {
     return view('pages.changePassword');
 });
 
+Route::get('ConsentForm', function () {
+    return view('pages.consentForm');
+});
+
 Route::controller(LoginController::class)->group(function() {
     Route::get('error', 'errorPage')->name('error');
     Route::post('login', 'verifyUser')->name('home');
@@ -56,6 +68,10 @@ Route::controller(LoginController::class)->group(function() {
 Route::controller(HospitalSettingsController::class)->group(function() {
     Route::get('Hospital', 'show')->name('HospitalSettings');
 });
+Route::get('/showPatient/{id}',[PatientController::class,'showEdit']);
+Route::get('/showDoctor/{id}',[DoctorController::class,'showEdit']);
+Route::get('/showHospital/{id}',[HospitalSettingsController::class,'showEdit']);
+Route::get('/showBranch/{id}',[HospitalBranchController::class,'showEdit']);
 
 // Auth::routes();
 

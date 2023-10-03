@@ -30,22 +30,22 @@
                         </ul>
                     </li>
                     <li>
-                        <a href="javascript:;.html" class="side-menu">
+                        <a id="lnkBranch" href="javascript:;.html" class="side-menu">
                             <div class="side-menu__icon"> <i data-lucide="layers"></i> </div>
                             <div class="side-menu__title">
                                 Branches
                                 <div class="side-menu__sub-icon "> <i data-lucide="chevron-down"></i> </div>
                             </div>
                         </a>
-                        <ul class="">
+                        <ul id="ulBranch" class="">
                             <li>
-                                <a href="{{ url('AddPatient') }}" class="side-menu">
+                                <a href="{{ url('Branch') }}" class="side-menu">
                                     <div class="side-menu__icon"> <i data-lucide="plus-circle"></i> </div>
                                     <div class="side-menu__title"> Add Branch </div>
                                 </a>
                             </li>
                             <li>
-                                <a href="side-menu-light-dashboard-overview-3.html" class="side-menu">
+                                <a href="{{ url('SearchBranch') }}" class="side-menu">
                                     <div class="side-menu__icon"> <i data-lucide="search"></i> </div>
                                     <div class="side-menu__title"> Search Branch </div>
                                 </a>
@@ -99,7 +99,7 @@
                             </li>
                         </ul>
                     </li>
-                    <li>
+                    <!-- <li>
                         <a id="lnkAppointment" href="javascript:;" class="side-menu">
                             <div class="side-menu__icon"> <i data-lucide="calendar"></i> </div>
                             <div class="side-menu__title">
@@ -121,7 +121,7 @@
                                 </a>
                             </li>
                         </ul>
-                    </li>
+                    </li> -->
                     <li>
                 
                     <li>
@@ -131,7 +131,7 @@
                         </a>
                     </li>
                     <li>
-                        <a href="side-menu-light-point-of-sale.html" class="{{ (request()->is('generateForm*')) ? 'side-menu side-menu--active' : 'side-menu' }}">
+                        <a id="lnkConsentForm" href="{{url('ConsentForm')}}" class="side-menu">
                             <div class="side-menu__icon"> <i data-lucide="book"></i> </div>
                             <div class="side-menu__title"> Generate Consent Form </div>
                         </a>

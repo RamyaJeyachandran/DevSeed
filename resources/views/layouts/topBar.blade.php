@@ -15,8 +15,7 @@
                         <div class="dropdown-menu w-56">
                             <ul class="dropdown-content bg-primary text-white">
                                 <li class="p-2">
-                                    <div class="font-medium">@yield('username')</div>
-                                    <div class="text-xs text-white/70 mt-0.5 dark:text-slate-500">Software Engineer</div>
+                                    <div class="font-medium">{{ session('userName') }}</div>
                                 </li>
                                 <li>
                                     <hr class="dropdown-divider border-white/[0.08]">

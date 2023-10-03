@@ -2,11 +2,11 @@
     <!-- BEGIN: Head -->
     <head>
         <meta charset="utf-8">
-        <link href="{{ asset('images/logo.svg')}}" rel="shortcut icon">
+        <link href="{{ asset('dist/images/logo.svg')}}" rel="shortcut icon">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Login - SEED</title>
         <!-- BEGIN: CSS Assets-->
-        <link rel="stylesheet" href="{{ asset('css/app.css')}}" />
+        <link rel="stylesheet" href="{{ asset('dist/css/app.css')}}" />
         <!-- END: CSS Assets-->
     </head>
     <!-- END: Head -->
@@ -16,7 +16,7 @@
                 <!-- BEGIN: Login Info -->
                 <div class="hidden xl:flex flex-col min-h-screen">
                     <a href="" class="-intro-x flex items-center pt-5">
-                        <img alt="Agnai SEED" class="w-6" src="{{ asset('images/logo.svg')}}">
+                        <img alt="Agnai SEED" class="w-6" src="{{ asset('dist/images/logo.svg')}}">
                         <span class="text-white text-lg ml-3"> SEED </span> 
                     </a>
                 </div>
@@ -69,10 +69,5 @@
                 <!-- END: Login Form -->
             </div>
         </div>
-        
-        <!-- BEGIN: JS Assets-->
-        <!-- <script src="{{ asset('js/app.js')}}"></script> -->
-        
-        <!-- END: JS Assets-->
     </body>
 </html>
