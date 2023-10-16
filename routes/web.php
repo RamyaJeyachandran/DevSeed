@@ -1,11 +1,14 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\LoginController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\HospitalSettingsController;
 use App\Http\Controllers\PatientController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\HospitalBranchController;
+use App\Http\Controllers\ConsentFromController;
+use App\Http\Controllers\DashboardController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -19,10 +22,19 @@ use App\Http\Controllers\HospitalBranchController;
 Route::get('/', function () {
     return view('pages.login')->with('errorMsg','');
 });
-Route::get('login', function () {
-    Session::flush();
-    return view('pages.login')->with('errorMsg','');
-});
+Route::post('login',[AuthController::class,'loginUser']);
+Route::get('login/{errorMsg}',[AuthController::class,'login']);
+Route::get('login',[AuthController::class,'logout']);
+// Route::post('login','AuthController@loginUser');
+// Route::get('login/{errorMsg}','AuthController@login');
+// Route::get('logout','AuthController@logout');
+
+Route::get('Home',[DashboardController::class,'index'])->middleware('customAuth');
+Route::get('Hospital',[HospitalSettingsController::class,'index'])->middleware('customAuth');
+// Route::get('Home','DashboardController@index')->middleware('customAuth');
+// Route::get('Hospital','HospitalSettingsController@index')->middleware('customAuth');
+
+
 Route::get('branches', function () {
     return view('pages.branches');
 });
@@ -52,19 +64,32 @@ Route::get('SearchHospital', function () {
 Route::get('subscribe', function () {
     return view('pages.subscribe');
 });
+Route::get('reportSA', function () {
+    return view('pages.reportSA');
+});
+Route::get('SearchConsent', function () {
+    return view('pages.SearchConsentForm');
+});
 Route::get('ResetPassword', function () {
     return view('pages.changePassword');
 });
-
-Route::get('ConsentForm', function () {
-    return view('pages.consentForm');
+Route::get('ViewConsent', function () {
+    return view('pages.viewConsentForm');
+});
+Route::get('PatientAppointment', function () {
+    return view('pages.addAppointment');
+});
+Route::get('AllAppointments', function () {
+    return view('pages.searchAppointment');
 });
 
-Route::controller(LoginController::class)->group(function() {
-    Route::get('error', 'errorPage')->name('error');
-    Route::post('login', 'verifyUser')->name('home');
-    // Route::get('cityList', 'getCities')->name('cityList');
-});
+Route::get('/ConsentForm/{patientConsentId?}',[ConsentFromController::class,'index']);
+
+// Route::controller(LoginController::class)->group(function() {
+//     Route::get('error', 'errorPage')->name('error');
+//     Route::post('login', 'verifyUser')->name('loginVerify');
+//     // Route::get('cityList', 'getCities')->name('cityList');
+// });
 Route::controller(HospitalSettingsController::class)->group(function() {
     Route::get('Hospital', 'show')->name('HospitalSettings');
 });
